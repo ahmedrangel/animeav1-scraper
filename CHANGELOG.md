@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.3.1
+
+[compare changes](https://github.com/ahmedrangel/animeav1-scraper/compare/v0.3.0...v0.3.1)
+
+### 📖 Documentation
+
+- **filters:** Use Predeterminado label ([f8b44c9](https://github.com/ahmedrangel/animeav1-scraper/commit/f8b44c9))
+
+### ❤️ Contributors
+
+- Ahmed Rangel ([@ahmedrangel](https://github.com/ahmedrangel))
+
 ## v0.3.0
 
 [compare changes](https://github.com/ahmedrangel/animeav1-scraper/compare/v0.2.0...v0.3.0)

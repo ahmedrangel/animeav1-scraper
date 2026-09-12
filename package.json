@@ -1,6 +1,6 @@
 {
 	"name": "animeav1-scraper",
-	"version": "0.3.0",
+	"version": "0.3.1",
 	"description": "AnimeAV1 Scraper API",
 	"private": false,
 	"type": "module",
