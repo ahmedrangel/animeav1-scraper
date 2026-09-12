@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v0.3.4
+
+[compare changes](https://github.com/ahmedrangel/animeav1-scraper/compare/v0.3.3...v0.3.4)
+
+### 🩹 Fixes
+
+- Types ([c8b67fa](https://github.com/ahmedrangel/animeav1-scraper/commit/c8b67fa))
+
+### 🏡 Chore
+
+- Update package repository URL ([44dfdd1](https://github.com/ahmedrangel/animeav1-scraper/commit/44dfdd1))
+
+### ❤️ Contributors
+
+- Ahmed Rangel ([@ahmedrangel](https://github.com/ahmedrangel))
+
 ## v0.3.3
 
 [compare changes](https://github.com/ahmedrangel/animeav1-scraper/compare/v0.3.2...v0.3.3)
