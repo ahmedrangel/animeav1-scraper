@@ -15,7 +15,7 @@ export interface PartialAnimeData {
   /** Slug del animé */
   slug: string;
   /** El tipo de anime: type "OVA" | "ONA" | "TV Anime" | "Película" | "Especial" */
-  type: AnimeType;
+  category: AnimeType;
   /** La URL directa a la página de éste animé */
   url: string;
 }
@@ -101,8 +101,8 @@ export interface ChapterData {
 export interface FilterOptions {
 /** Lista de generos para la búsqueda */
   genres?: AnimeGenre[];
-  /** Lista de categorías para la búsqueda */
-  categories?: AnimeType[];
+  /** Lista de tipos para la búsqueda */
+  types?: AnimeType[];
   /** Los statuses de los animés para filtrar */
   statuses?: AnimeStatus[];
   /** El orden en el que se recibirán los animés */

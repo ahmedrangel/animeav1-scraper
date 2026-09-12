@@ -5,14 +5,14 @@ import { executeSearch } from "./executeSearch";
 /** * Realiza una búsqueda usando filtros específicos.
  * @param {FilterOptions} [options] - Opciones de filtro para la búsqueda
  * @param {AnimeGenre[]} [options.genres] - Géneros de anime
- * @param {AnimeType[]} [options.categories] - Categorías de anime
+ * @param {AnimeType[]} [options.types] - Categorías de anime
  * @param {AnimeStatus[]} [options.statuses] - Estados de anime
  * @param {FilterOrderType} [options.order] - El orden (por defecto "Predeterminado")
  * @param {number} [options.page] - El número de página (por defecto 1)
  * @param {number} [options.maxYear] - El año máximo de lanzamiento para filtrar los animés
  * @param {number} [options.minYear] - El año mínimo de lanzamiento para filtrar los animés
  * @returns {Promise<SearchAnimeResults | null>}
- * @example await searchAnimesByFilter({ genres: ["Acción"], statuses: ["En emisión"], categories: ["Anime", "OVA"], order: "Predeterminado", page: 1 })
+ * @example await searchAnimesByFilter({ genres: ["Acción"], statuses: ["En emisión"], types: ["TV Anime", "OVA"], order: "Predeterminado", page: 1 })
  */
 export const searchAnimesByFilter = async (options?: FilterOptions): Promise<SearchAnimeResults | null> => {
   try {
@@ -24,8 +24,8 @@ export const searchAnimesByFilter = async (options?: FilterOptions): Promise<Sea
       return AnimeStatusEnum[status as keyof typeof AnimeStatusEnum] || status;
     }) || [];
 
-    const categories = options?.categories?.map((category) => {
-      return AnimeTypeEnum[category as keyof typeof AnimeTypeEnum] || category;
+    const types = options?.types?.map((type) => {
+      return AnimeTypeEnum[type as keyof typeof AnimeTypeEnum] || type;
     }) || [];
 
     const order = options?.order ? FilterOrderEnum[options.order as unknown as keyof typeof FilterOrderEnum] : "default";
@@ -34,7 +34,7 @@ export const searchAnimesByFilter = async (options?: FilterOptions): Promise<Sea
       query: {
         ...genres && Array.isArray(genres) ? { genre: genres } : {},
         ...statuses && Array.isArray(statuses) ? { status: statuses } : {},
-        ...categories && Array.isArray(categories) ? { category: categories } : {},
+        ...types && Array.isArray(types) ? { category: types } : {},
         order: order,
         ...options?.page ? { page: options.page } : {},
         ...options?.maxYear ? { maxYear: options.maxYear } : {},
