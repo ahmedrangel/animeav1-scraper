@@ -14,7 +14,7 @@ const working = {
   searchAnimesByFilter: Boolean((await searchAnimesByFilter({
     genres: ["Romance"],
     statuses: ["En emisión"],
-    categories: ["TV Anime", "OVA"],
+    types: ["TV Anime", "OVA"],
     order: "Predeterminado",
     page: 1
   }))?.media?.length || 0 > 0),

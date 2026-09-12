@@ -63,7 +63,7 @@ const result = await searchAnime("romance", 2);
 |-|-|:-:|-|
 |`options`|FilterOptions|❌|Opciones de filtro para la búsqueda|
 |`options.genres`|AnimeGenre[]|❌|Géneros de anime|
-|`options.categories`|AnimeType[]|❌|Categorías de anime|
+|`options.types`|AnimeType[]|❌|Categorías de anime|
 |`options.statuses`|AnimeStatus[]|❌|Estados de anime|
 |`options.order`|FilterOrderType|❌|El orden (por defecto "Predeterminado")|
 |`options.page`|number|❌|El número de página (por defecto 1)|
@@ -77,7 +77,7 @@ import { searchAnimesByFilter } from "animeav1-scraper";
 const result = await searchAnimesByFilter({
   genres: ["Acción", "Aventura", "Ciencia Ficción", "Comedia"],
   statuses: ["En emisión", "Finalizado", "Próximamente"],
-  categories: ["OVA", "ONA", "TV Anime", "Película", "Especial"],
+  types: ["OVA", "ONA", "TV Anime", "Película", "Especial"],
   order: "Populares",
   page: 1,
   minYear: 2024,
