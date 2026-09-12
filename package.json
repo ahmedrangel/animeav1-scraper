@@ -7,7 +7,7 @@
 	"homepage": "https://github.com/ahmedrangel/animeav1-scraper",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/ahmedrangel/animeav1-scraper"
+		"url": "git+https://github.com/ahmedrangel/animeav1-scraper.git"
 	},
 	"bugs": {
 		"url": "https://github.com/ahmedrangel/animeav1-scraper/issues"
