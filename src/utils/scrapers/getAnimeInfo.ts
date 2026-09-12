@@ -26,7 +26,7 @@ export const getAnimeInfo = async (
     const alternativeTitles = $("main > article > div > div > header > div > h2").map((i, el) => $(el).text()).get();
 
     const containsRelated = $("main > section").eq(0).find("header > div > h2").text() === "Relacionados";
-    const related = containsRelated? $("main > section").eq(0).find("div > div:has(header > h3)")
+    const related = containsRelated? $("main > section").eq(0).find("div > div > div > article:has(header > h3)")
       .map((_, el) => ({
         title: $(el).find("header > h3").text().trim(),
         relation: $(el).find("header > span").text().trim(),
