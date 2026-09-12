@@ -15,7 +15,7 @@ export interface PartialAnimeData {
   /** Slug del animé */
   slug: string;
   /** El tipo de anime: type "OVA" | "ONA" | "TV Anime" | "Película" | "Especial" */
-  category: AnimeType;
+  type: AnimeType;
   /** La URL directa a la página de éste animé */
   url: string;
 }
