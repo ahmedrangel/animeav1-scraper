@@ -65,7 +65,7 @@ const result = await searchAnime("romance", 2);
 |`options.genres`|AnimeGenre[]|❌|Géneros de anime|
 |`options.categories`|AnimeType[]|❌|Categorías de anime|
 |`options.statuses`|AnimeStatus[]|❌|Estados de anime|
-|`options.order`|FilterOrderType|❌|El orden (por defecto "Por Defecto")|
+|`options.order`|FilterOrderType|❌|El orden (por defecto "Predeterminado")|
 |`options.page`|number|❌|El número de página (por defecto 1)|
 |`options.minYear`|number|❌|Año mínimo de lanzamiento|
 |`options.maxYear`|number|❌|Año máximo de lanzamiento|

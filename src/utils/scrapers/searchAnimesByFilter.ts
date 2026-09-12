@@ -7,12 +7,12 @@ import { executeSearch } from "./executeSearch";
  * @param {AnimeGenre[]} [options.genres] - Géneros de anime
  * @param {AnimeType[]} [options.categories] - Categorías de anime
  * @param {AnimeStatus[]} [options.statuses] - Estados de anime
- * @param {FilterOrderType} [options.order] - El orden (por defecto "Por Defecto")
+ * @param {FilterOrderType} [options.order] - El orden (por defecto "Predeterminado")
  * @param {number} [options.page] - El número de página (por defecto 1)
  * @param {number} [options.maxYear] - El año máximo de lanzamiento para filtrar los animés
  * @param {number} [options.minYear] - El año mínimo de lanzamiento para filtrar los animés
  * @returns {Promise<SearchAnimeResults | null>}
- * @example await searchAnimesByFilter({ genres: ["Acción"], statuses: ["En emisión"], categories: ["Anime", "OVA"], order: "Por Defecto", page: 1 })
+ * @example await searchAnimesByFilter({ genres: ["Acción"], statuses: ["En emisión"], categories: ["Anime", "OVA"], order: "Predeterminado", page: 1 })
  */
 export const searchAnimesByFilter = async (options?: FilterOptions): Promise<SearchAnimeResults | null> => {
   try {
