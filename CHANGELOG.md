@@ -1,6 +1,27 @@
 # Changelog
 
 
+## v0.4.0
+
+[compare changes](https://github.com/ahmedrangel/animeav1-scraper/compare/v0.3.5...v0.4.0)
+
+### 🚀 Enhancements
+
+- Add related anime cover field ([653b387](https://github.com/ahmedrangel/animeav1-scraper/commit/653b387))
+- **scrapers:** ⚠️  Parse Svelte media payloads ([2e18afe](https://github.com/ahmedrangel/animeav1-scraper/commit/2e18afe))
+
+### 🩹 Fixes
+
+- **scraper:** Update related anime selector ([f782a3f](https://github.com/ahmedrangel/animeav1-scraper/commit/f782a3f))
+
+#### ⚠️ Breaking Changes
+
+- **scrapers:** ⚠️  Parse Svelte media payloads ([2e18afe](https://github.com/ahmedrangel/animeav1-scraper/commit/2e18afe))
+
+### ❤️ Contributors
+
+- Ahmed Rangel ([@ahmedrangel](https://github.com/ahmedrangel))
+
 ## v0.3.5
 
 [compare changes](https://github.com/ahmedrangel/animeav1-scraper/compare/v0.3.4...v0.3.5)
