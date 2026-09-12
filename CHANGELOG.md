@@ -7,6 +7,22 @@
 
 ### 🚀 Enhancements
 
+- ⚠️  Migrate target site from AnimeFLV to AnimeAV1 ([42c0779](https://github.com/ahmedrangel/animeav1-scraper/commit/42c0779))
+
+#### ⚠️ Breaking Changes
+
+- ⚠️  Migrate target site from AnimeFLV to AnimeAV1 ([42c0779](https://github.com/ahmedrangel/animeav1-scraper/commit/42c0779))
+
+### ❤️ Contributors
+
+- Ahmed Rangel ([@ahmedrangel](https://github.com/ahmedrangel))
+
+## v0.3.0
+
+[compare changes](https://github.com/ahmedrangel/animeav1-scraper/compare/v0.2.0...v0.3.0)
+
+### 🚀 Enhancements
+
 - ⚠️  Migrate target site from AnimeFLV to AnimeAV1 ([ccd95c8](https://github.com/ahmedrangel/animeav1-scraper/commit/ccd95c8))
 
 #### ⚠️ Breaking Changes
