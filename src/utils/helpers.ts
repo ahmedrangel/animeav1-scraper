@@ -1,4 +1,6 @@
 import { $fetch, type FetchOptions } from "ofetch";
+import type { CheerioAPI } from "cheerio";
+import type { SvelteMedia } from "../types";
 
 export const animeav1URL = "https://animeav1.com";
 
@@ -36,3 +38,15 @@ export const AnimeStatusEnum = {
 };
 
 export const AnimeGenreEnum = getEnum(AnimeGenres);
+
+export const getSvelteData = ($: CheerioAPI) => {
+  const script = $("script").map((_, el) => $(el).html()).get().find(script => script?.includes("data:{media:"));
+  if (!script) return null;
+  const marker = "data:{media:";
+  const markerIndex = script.indexOf(marker);
+  if (markerIndex === -1) return null;
+  const objectStart = script.indexOf("{", markerIndex + "data:".length);
+  const data = script.slice(objectStart, script.indexOf("},uses:", objectStart) + 1)?.replace(/\bvoid\s+0\b/g, "null")?.replace(/([{,])(\w+):/g, "$1\"$2\":");
+  if (!data) return null;
+  return JSON.parse(data) as SvelteMedia;
+};

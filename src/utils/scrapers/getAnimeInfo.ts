@@ -1,5 +1,5 @@
 import { load } from "cheerio";
-import { AnimeStatuses, AnimeTypes, animeav1URL, callAnimeA1 } from "../helpers";
+import { AnimeStatuses, AnimeTypes, animeav1URL, callAnimeA1, getSvelteData } from "../helpers";
 import type { AnimeGenre, AnimeInfoData, AnimeStatus, AnimeType } from "../../types";
 
 /** * Obtiene la información de un anime por su slug
@@ -16,49 +16,54 @@ export const getAnimeInfo = async (
     if (!html) return null;
 
     const $ = load(html);
-
-    const scripts = $("script");
+    const { media } = getSvelteData($)!;
 
     const info = $("main > article > div > div > header > div > span").map((_, el) => $(el).text()).get();
     const status = info[info.length - 1] as AnimeStatus;
-    const type = info?.[0] as AnimeType;
     const year = info?.[2];
     const alternativeTitles = $("main > article > div > div > header > div > h2").map((i, el) => $(el).text()).get();
 
     const containsRelated = $("main > section").eq(0).find("header > div > h2").text() === "Relacionados";
     const related = containsRelated? $("main > section").eq(0).find("div > div > div > article:has(header > h3)")
-      .map((_, el) => ({
-        title: $(el).find("header > h3").text().trim(),
-        relation: $(el).find("header > span").text().trim(),
-        slug: $(el).find("a").attr("href")?.split("/").filter(Boolean).pop() || "",
-        cover: $(el).find("figure > img").attr("src") || "",
-        url: animeav1URL + $(el).find("a").attr("href") || ""
-      }))
+      .map((_, el) => {
+        const relationSlug = $(el).find("a").attr("href")?.split("/").filter(Boolean).pop() || "";
+        return {
+          title: $(el).find("header > h3").text().trim(),
+          relation: $(el).find("header > span").text().trim(),
+          slug: relationSlug,
+          cover: $(el).find("figure > img").attr("src") || "",
+          year: parseInt($(el).parent().find("div > div").first().text().trim()),
+          startDate: media.relations?.find((r: Record<string, any>) => r?.destination?.slug === relationSlug)?.destination?.startDate,
+          url: animeav1URL + $(el).find("a").attr("href") || ""
+        };
+      })
       .get(): [];
 
     const animeInfo: AnimeInfoData = {
-      title: $("main > article > div > div > header > div > h1").text(),
+      title: media.title,
+      slug: media.slug,
       alternative_titles: alternativeTitles,
       status: AnimeStatuses.includes(status) ? status : undefined,
-      rating: $("main > article > div > div > div > div.ic-star-solid div.text-lead").text(),
-      type: AnimeTypes.includes(type) ? type : undefined,
+      rating: media.score,
+      type: media?.category?.name && AnimeTypes.includes(media?.category?.name) ? media.category.name : undefined,
       cover: $("main > article > div > div> figure > img").attr("src") as string,
-      synopsis: $("main > article > div > div > div.entry > p").text(),
-      genres: $("main > article > div > div > header > div > a")
-        .map((_, el) => $(el).text().trim())
-        .get() as AnimeGenre[],
+      synopsis: media.synopsis,
+      genres: media?.genres?.map((g: Record<string, any>) => g.name) as AnimeGenre[],
       next_airing_episode: undefined, // Info not given
       year: parseInt(year),
+      start_date: media?.startDate,
+      end_date: media?.endDate,
+      malId: media?.malId,
+      mature: media.mature,
+      trailer: media.trailer ? `https://www.youtube.com/watch?v=${media.trailer}` : undefined,
+      votes: media.votes,
       episodes: [],
       url: `${animeav1URL}/media/${slug}`,
       related
     };
 
-    const episodesFind = scripts.map((_, el) => $(el).html()).get().find(script => script?.includes("episodes:"));
-    const episodesArray = episodesFind?.match(/episodes:\[(.*?)\],relations:/)?.[1]?.replace(/([{,])(\w+):/g, "$1\"$2\":") || "";
-
-    if (episodesArray) {
-      for (let i = 1; i <= JSON.parse(`[${episodesArray}]`)?.length; i++) {
+    if (media?.episodes?.length) {
+      for (let i = 1; i <= media.episodes.length; i++) {
         if (animeInfo.episodes instanceof Array) {
           animeInfo.episodes.push({
             number: i,

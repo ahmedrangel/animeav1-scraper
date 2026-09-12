@@ -38,12 +38,14 @@ export interface SearchAnimeResults {
 export interface AnimeInfoData {
 /** Titulo del animé */
   title: string;
+  /** Slug del animé */
+  slug: string;
   /** Array con titulos alternativos de este animé */
   alternative_titles: string[];
   /** Estado de este animé: "En emision" | "Finalizado" | "Proximamente" */
   status?: AnimeStatus;
   /** Evaluación de estrellas de este animé */
-  rating: string;
+  rating: number;
   /** El tipo de anime: "OVA" | "ONA" | "TV Anime" | "Película" | "Especial" */
   type?: AnimeType;
   /** URL a la carátula de este animé */
@@ -56,6 +58,18 @@ export interface AnimeInfoData {
   next_airing_episode?: string;
   /** Año de lanzamiento del animé */
   year: number;
+  /** Fecha de inicio de emisión del animé (YYYY-MM-DD) */
+  start_date?: string;
+  /** Fecha de finalización de emisión del animé (YYYY-MM-DD) */
+  end_date?: string;
+  /** ID de MyAnimeList del animé */
+  malId: number;
+  /** Indica si el anime es para adultos */
+  mature: boolean;
+  /** URL del tráiler del animé, si existe */
+  trailer?: string;
+  /** Número de votos que ha recibido el animé */
+  votes: number;
   /** Lista de animés relacionados */
   related?: AnimeRelated[];
   /** Número de episodios que tiene este animé */
@@ -122,6 +136,8 @@ export interface EpisodeServersData {
   name: string;
   /** URL del servidor */
   url: string;
+  /** Tipo de servidor (SUB o DUB) */
+  type: "SUB" | "DUB";
 }
 
 export interface EpisodeInfoData {
@@ -129,4 +145,53 @@ export interface EpisodeInfoData {
   number: number;
   embeds: EpisodeServersData[];
   downloads: EpisodeServersData[];
+}
+
+export interface SvelteMedia {
+  media: {
+    id: number;
+    categoryId: number;
+    title: string;
+    aka: Record<string, string>;
+    genres: {
+      id: number;
+      name: string;
+      type: number;
+      slug: string;
+      malId: number;
+    }[];
+    synopsis: string;
+    poster: string | null;
+    backdrop: string | null;
+    trailer: string | null;
+    status: number;
+    runtime: null;
+    startDate?: string;
+    nextDate?: string;
+    endDate?: string;
+    waitDays: number;
+    featured: boolean;
+    mature: boolean;
+    episodesCount: number;
+    score: number;
+    votes: number;
+    slug: string;
+    malId: number;
+    seasons: unknown;
+    createdAt: string;
+    updatedAt: string;
+    category: { id: number, name: AnimeType, slug: string, malId: string };
+    episodes: {
+      id: number;
+      number: number;
+    }[];
+    relations: { type: number, destination: { id: number, title: string, slug: string, startDate: string } }[];
+  };
+  embeds?: SvelteServersData;
+  downloads?: SvelteServersData;
+}
+
+interface SvelteServersData {
+  SUB?: { server: string, url: string }[];
+  DUB?: { server: string, url: string }[];
 }
