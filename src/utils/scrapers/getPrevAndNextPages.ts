@@ -1,26 +1,30 @@
-import type { Cheerio } from "cheerio";
-import { AnimeflvUrls } from "../helpers";
+import type { CheerioAPI } from "cheerio";
+import { animeav1URL } from "../helpers";
 
-export const getNextAndPrevPages = (selector: Cheerio<any>): {
+export const getNextAndPrevPages = ($: CheerioAPI): {
   foundPages: number;
   previousPage: string | null;
   nextPage: string | null;
 } => {
-  const aTagValue = selector.last().prev().find("a").text();
-  const aRef = selector.eq(0).children("a").attr("href");
 
-  let foundPages = 0;
-  let previousPage: string | null = "";
-  let nextPage: string | null = "";
+  const scripts = $("script");
+  const selector = $("main > section").children("div").eq(3);
+  const paginationFind = scripts.map((_, el) => $(el).html()).get().find(script => script?.includes("pagination:"));
+  const episodesObj = paginationFind?.match(/pagination:(\{[^}]+\})/)?.[1]?.replace(/([{,])(\w+):/g, "$1\"$2\":") || "";
+  const pagination = episodesObj ? JSON.parse(episodesObj) : {};
+  let previousPage, nextPage;
+  if ($(selector).find("span").first().text() === "1" || pagination.totalPages === 1 || !pagination.totalPages) {
+    previousPage = null;
+  }
+  else {
+    previousPage = animeav1URL + $(selector).find("span").first().prev("a").attr("href");
+  }
 
-  if (Number(aTagValue) === 0) foundPages = 1;
-  else foundPages = Number(aTagValue);
-
-  if (aRef === "#" || foundPages == 1) previousPage = null;
-  else previousPage = AnimeflvUrls.host + aRef;
-
-  if (selector.last().children("a").attr("href") === "#" || foundPages == 1) nextPage = null;
-  else nextPage = AnimeflvUrls.host + selector.last().children("a").attr("href");
-
-  return { foundPages, nextPage, previousPage };
+  if ($(selector).find("span").last().text() === pagination.totalPages.toString() || pagination.totalPages === 1 || !pagination.totalPages) {
+    nextPage = null;
+  }
+  else {
+    nextPage = animeav1URL + $(selector).find("span").next("a").attr("href");
+  }
+  return { foundPages: pagination.totalPages || 1, nextPage, previousPage };
 };

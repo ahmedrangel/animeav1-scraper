@@ -12,11 +12,9 @@ export interface PartialAnimeData {
   cover: string;
   /** La sinopsis (descripción) del animé */
   synopsis: string;
-  /** Evaluación de estrellas del animé */
-  rating: string;
   /** Slug del animé */
   slug: string;
-  /** El tipo de anime: OVA | Anime | Película | Especial */
+  /** El tipo de anime: type "OVA" | "ONA" | "TV Anime" | "Película" | "Especial" */
   type: AnimeType;
   /** La URL directa a la página de éste animé */
   url: string;
@@ -43,11 +41,11 @@ export interface AnimeInfoData {
   /** Array con titulos alternativos de este animé */
   alternative_titles: string[];
   /** Estado de este animé: "En emision" | "Finalizado" | "Proximamente" */
-  status: AnimeStatus;
+  status?: AnimeStatus;
   /** Evaluación de estrellas de este animé */
   rating: string;
-  /** El tipo de anime: "OVA" | "Anime" | "Película" | "Especial" */
-  type: AnimeType;
+  /** El tipo de anime: "OVA" | "ONA" | "TV Anime" | "Película" | "Especial" */
+  type?: AnimeType;
   /** URL a la carátula de este animé */
   cover: string;
   /** Sinopsis o descripción del animé */
@@ -56,15 +54,17 @@ export interface AnimeInfoData {
   genres: AnimeGenre[];
   /** Fecha del próximo episodio en emisión (YYYY-MM-DD) */
   next_airing_episode?: string;
-  /** Número de episodios que tiene este animé */
-  episodes: EpisodeData[] | number;
+  /** Año de lanzamiento del animé */
+  year: number;
   /** Lista de animés relacionados */
   related?: AnimeRelated[];
+  /** Número de episodios que tiene este animé */
+  episodes: EpisodeData[] | number;
   /** La URL directa a la pagina del animé */
   url: string;
 }
 
-/** Relación de animés (precuela, secuela, etc.) */
+/** Relación de animés (Secuela, Resumen, Otro, etc.) */
 export interface AnimeRelated {
 /** Título del animé relacionado */
   title: string;
@@ -98,40 +98,33 @@ export interface ChapterData {
   url: string;
 }
 
-export interface AnimeOnAirData {
-/** Título del animé */
-  title: string;
-  /** El tipo de anime: "OVA" | "Anime" | "Película" | "Especial" */
-  type: AnimeType;
-  /** El slug de este animé */
-  slug: string;
-  /** La URL directa a la página de este anime */
-  url: string;
-}
 export interface FilterOptions {
 /** Lista de generos para la búsqueda */
   genres?: AnimeGenre[];
-  /** Lista de tipos para la búsqueda */
-  types?: AnimeType[];
+  /** Lista de categorías para la búsqueda */
+  categories?: AnimeType[];
   /** Los statuses de los animés para filtrar */
   statuses?: AnimeStatus[];
   /** El orden en el que se recibirán los animés */
   order?: FilterOrderType;
   /** El número de página que se solicitará */
   page?: number;
+  /** El año máximo de lanzamiento para filtrar los animés */
+  maxYear?: number;
+  /** El año mínimo de lanzamiento para filtrar los animés */
+  minYear?: number;
 }
 
 export interface EpisodeServersData {
 /** Nombre del servidor */
   name: string;
-  /** URL del servidor para descarga de episodio */
-  download?: string;
-  /** URL del servidor para embed del episodio */
-  embed?: string;
+  /** URL del servidor */
+  url: string;
 }
 
 export interface EpisodeInfoData {
   title: string;
   number: number;
-  servers: EpisodeServersData[];
+  embeds: EpisodeServersData[];
+  downloads: EpisodeServersData[];
 }

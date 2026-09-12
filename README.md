@@ -1,21 +1,21 @@
-# AnimeFLV-Scraper
+# animeav1-scraper
 
-Librería tipada para extraer información del sitio `https://www4.animeflv.net/`.
+Librería tipada para extraer información del sitio `https://animeav1.com/`.
 
 ## Instalación
 ```sh
 # npm
-npm i animeflv-scraper
+npm i animeav1-scraper
 
 # yarn
-yarn add animeflv-scraper
+yarn add animeav1-scraper
 
 # pnpm
-pnpm add animeflv-scraper
+pnpm add animeav1-scraper
 ```
 
 ## Licencia
-[MIT License](https://github.com/ahmedrangel/animeflv-scraper/blob/main/LICENSE)
+[MIT License](https://github.com/ahmedrangel/animeav1-scraper/blob/main/LICENSE)
 
 # Funciones
 ### getAnimeInfo(params)
@@ -24,27 +24,22 @@ pnpm add animeflv-scraper
 |`slug`|string|✅|El slug del anime|
 
 ```js
-import { getAnimeInfo } from "animeflv-scraper";
+import { getAnimeInfo } from "animeav1-scraper";
 
-const result = await getAnimeInfo("one-piece-tv");
+const result = await getAnimeInfo("one-piece");
 ```
 
 ### getEpisode(params)
 |Params|Type|Required|Description|
 |-|-|:-:|-|
 |`slug`|string|✅|El slug del anime o del episodio|
-|`episode`|number|❌|El número de episodio|
-> Nota: Si se utiliza el slug de episodio, no se debe utilizar el parámetro de "episode".
+|`episode`|number|✅|El número de episodio|
 
 ```js
-import { getEpisode } from "animeflv-scraper";
+import { getEpisode } from "animeav1-scraper";
 
 // Usando slug de anime y número de episodio
-const result = await getEpisode("one-piece-tv", 1)
-```
-```js
-// Usando slug del episodio
-const result = await getEpisode("one-piece-tv-1")
+const result = await getEpisode("one-piece", 1)
 ```
 
 ### searchAnime(params)
@@ -54,13 +49,13 @@ const result = await getEpisode("one-piece-tv-1")
 |`page`|number|❌|El número de página para la búsqueda
 
 ```js
-import { searchAnime } from "animeflv-scraper";
+import { searchAnime } from "animeav1-scraper";
 
-const result = await searchAnime("Naruto");
+const result = await searchAnime("romance");
 ```
 ```js
 // Consultando la página número 2
-const result = await searchAnime("Naruto", 2);
+const result = await searchAnime("romance", 2);
 ```
 
 ### searchAnimesByFilter(params)
@@ -68,20 +63,25 @@ const result = await searchAnime("Naruto", 2);
 |-|-|:-:|-|
 |`options`|FilterOptions|❌|Opciones de filtro para la búsqueda|
 |`options.genres`|AnimeGenre[]|❌|Géneros de anime|
-|`options.types`|AnimeType[]|❌|Tipos de anime|
+|`options.categories`|AnimeType[]|❌|Categorías de anime|
 |`options.statuses`|AnimeStatus[]|❌|Estados de anime|
 |`options.order`|FilterOrderType|❌|El orden (por defecto "Por Defecto")|
 |`options.page`|number|❌|El número de página (por defecto 1)|
+|`options.minYear`|number|❌|Año mínimo de lanzamiento|
+|`options.maxYear`|number|❌|Año máximo de lanzamiento|
+
 
 ```js
-import { searchAnimesByFilter } from "animeflv-scraper";
+import { searchAnimesByFilter } from "animeav1-scraper";
 
 const result = await searchAnimesByFilter({
-  genres: ["Acción", "Artes Marciales", "Aventuras", "Carreras"],
+  genres: ["Acción", "Aventura", "Ciencia Ficción", "Comedia"],
   statuses: ["En emisión", "Finalizado", "Próximamente"],
-  types: ["Anime", "OVA", "Especial", "Película"],
-  order: "Recientemente Agregados",
-  page: 1
+  categories: ["OVA", "ONA", "TV Anime", "Película", "Especial"],
+  order: "Populares",
+  page: 1,
+  minYear: 2024,
+  maxYear: 2026
 });
 ```
 
@@ -91,21 +91,14 @@ const result = await searchAnimesByFilter({
 |`url`|string|✅|La URL específica para buscar animes|
 
 ```js
-import { searchAnimesByURL } from "animeflv-scraper";
+import { searchAnimesByURL } from "animeav1-scraper";
 
-const result = await searchAnimesByURL("https://www3.animeflv.net/browse?q=one+piece");
+const result = await searchAnimesByURL("https://animeav1.com/catalogo?search=one+piece");
 ```
 
 ### getLatest()
 ```js
-import { getLatest } from "animeflv-scraper";
+import { getLatest } from "animeav1-scraper";
 
 const result = await getLatest();
-```
-
-### getOnAir()
-```js
-import { getOnAir } from "animeflv-scraper";
-
-const result = await getOnAir();
 ```

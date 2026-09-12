@@ -1,4 +1,4 @@
-import { callAnimeFLV } from "../helpers";
+import { callAnimeA1 } from "../helpers";
 import type { SearchAnimeResults } from "../../types";
 import { executeSearch } from "./executeSearch";
 
@@ -10,9 +10,9 @@ export const searchAnime = async (query: string, page?: number): Promise<SearchA
   if (!query || (typeof query) !== "string") throw new Error("Consulta de búsqueda no válida o no proporcionada");
   const fixedQuery = query.toLowerCase().replace(/\s+/g, "+");
   try {
-    const searchData = await callAnimeFLV("/browse", {
+    const searchData = await callAnimeA1("/catalogo", {
       query: {
-        q: fixedQuery,
+        search: fixedQuery,
         ...(page ? { page } : {})
       }
     });

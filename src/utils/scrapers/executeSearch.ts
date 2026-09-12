@@ -16,8 +16,7 @@ export const executeSearch = (searchData: string): SearchAnimeResults => {
     media: []
   };
 
-  const pageSelector = $("body > div.Wrapper > div > div > main > div > ul > li");
-  const { foundPages, nextPage, previousPage } = getNextAndPrevPages(pageSelector);
+  const { foundPages, nextPage, previousPage } = getNextAndPrevPages($);
   search.media.push(...scrapSearchAnimeData($));
   search.foundPages = foundPages;
   search.nextPage = nextPage;

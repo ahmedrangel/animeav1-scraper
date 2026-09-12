@@ -1,5 +1,5 @@
 import { load } from "cheerio";
-import { AnimeflvUrls, callAnimeFLV } from "../helpers";
+import { animeav1URL, callAnimeA1 } from "../helpers";
 import type { ChapterData } from "../../types";
 
 /** * Obtiene los últimos episodios lanzados.
@@ -8,21 +8,21 @@ import type { ChapterData } from "../../types";
  */
 export const getLatest = async (): Promise<ChapterData[]> => {
   try {
-    const chaptersData = await callAnimeFLV();
+    const chaptersData = await callAnimeA1();
     if (!chaptersData) return [];
     const $ = load(chaptersData);
 
-    const chapterSelector = $("body > div.Wrapper > div > div > div > main > ul.ListEpisodios.AX.Rows.A06.C04.D03 > li");
+    const articles = $("main > section:nth-child(1) > div > article");
 
     const chapters: ChapterData[] = [];
-    if (chapterSelector.length > 0) {
-      chapterSelector.each((i, el) => {
+    if (articles.length > 0) {
+      articles.each((i, el) => {
         chapters.push({
-          title: $(el).find("strong").text(),
-          number: Number($(el).find("span.Capi").text().replace("Episodio ", "")),
-          cover: AnimeflvUrls.images + ($(el).find("img").attr("src") as string),
-          slug: $(el).find("a").attr("href")!.replace("/ver/", ""),
-          url: AnimeflvUrls.host + $(el).find("a").attr("href") as string
+          title: $(el).find("header > div").text(),
+          number: Number($(el).find("div > div > div > span").text()),
+          cover: $(el).find("div > figure > img").attr("src") as string,
+          slug: $(el).find("a").attr("href")!.replace("/media/", ""),
+          url: animeav1URL + $(el).find("a").attr("href") as string
         });
       });
     }

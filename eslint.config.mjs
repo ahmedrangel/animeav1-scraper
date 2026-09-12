@@ -3,7 +3,7 @@ import stylistic from "@stylistic/eslint-plugin";
 import parserTs from "@typescript-eslint/parser";
 import tsPlugin from "@typescript-eslint/eslint-plugin";
 import importPlugin from "eslint-plugin-import-x";
-import { includeIgnoreFile } from "@eslint/compat";
+import { includeIgnoreFile } from "eslint/config";
 
 export default [
   includeIgnoreFile(resolve(".gitignore")),

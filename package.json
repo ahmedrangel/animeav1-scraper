@@ -1,16 +1,16 @@
 {
-	"name": "animeflv-scraper",
-	"version": "0.2.0",
-	"description": "AnimeFLV Scraper",
+	"name": "animeav1-scraper",
+	"version": "0.3.0",
+	"description": "AnimeAV1 Scraper API",
 	"private": false,
 	"type": "module",
-	"homepage": "https://github.com/ahmedrangel/animeflv-scraper",
+	"homepage": "https://github.com/ahmedrangel/animeav1-scraper",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/ahmedrangel/animeflv-scraper"
+		"url": "https://github.com/ahmedrangel/animeav1-scraper"
 	},
 	"bugs": {
-		"url": "https://github.com/ahmedrangel/animeflv-scraper/issues"
+		"url": "https://github.com/ahmedrangel/animeav1-scraper/issues"
 	},
 	"license": "MIT",
 	"exports": {
@@ -27,7 +27,7 @@
 	],
 	"changelog": {
 		"repo": {
-			"repo": "ahmedrangel/animeflv-scraper",
+			"repo": "ahmedrangel/animeav1-scraper",
 			"provider": "github",
 			"domain": "github.com"
 		}
@@ -37,21 +37,20 @@
 		"dev": "node playground/index.ts",
 		"lint": "eslint"
 	},
-	"packageManager": "pnpm@11.21.0",
+	"packageManager": "pnpm@12.4.1",
 	"dependencies": {
 		"cheerio": "^1.2.0",
 		"ofetch": "^1.5.1",
 		"ufo": "^1.6.4"
 	},
 	"devDependencies": {
-		"@eslint/compat": "^2.1.0",
 		"@stylistic/eslint-plugin": "^5.10.0",
-		"@typescript-eslint/eslint-plugin": "^8.67.0",
-		"@typescript-eslint/parser": "^8.67.0",
+		"@typescript-eslint/eslint-plugin": "^8.70.0",
+		"@typescript-eslint/parser": "^8.70.0",
 		"changelogen": "^0.6.2",
-		"eslint": "^10.8.1",
+		"eslint": "^10.10.0",
 		"eslint-plugin-import-x": "^4.17.1",
-		"obuild": "^0.4.38",
+		"obuild": "^0.4.39",
 		"typescript": "^6.0.3"
 	}
 }

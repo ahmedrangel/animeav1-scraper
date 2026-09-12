@@ -1,82 +1,38 @@
 import { $fetch, type FetchOptions } from "ofetch";
 
-export const AnimeflvUrls = {
-  host: "https://www4.animeflv.net",
-  images: "https://animeflv.net"
+export const animeav1URL = "https://animeav1.com";
+
+export const callAnimeA1 = async (path: string = "", options?: FetchOptions<any>): Promise<string | null> => {
+  return $fetch<string>(`${animeav1URL}${path}`, options).catch(() => null);
 };
 
-export const callAnimeFLV = async (path: string = "", options?: FetchOptions<any>): Promise<string | null> => {
-  return $fetch<string>(`${AnimeflvUrls.host}${path}`, options).catch(() => null);
+const getEnum = (array: readonly string[]) => {
+  return Object.fromEntries(
+    array.map(item => [item, item.toLowerCase().replace(/\s+/g, "-").normalize("NFD").replace(/[^\w-]+/g, "")])
+  );
 };
 
-export const AnimeGenres = [
-  "Acción", "Artes Marciales", "Aventuras", "Carreras", "Ciencia Ficción", "Comedia", "Demencia", "Demonios", "Deportes", "Drama", "Ecchi", "Escolares", "Espacial", "Fantasía", "Harem", "Histórico", "Infantil", "Josei", "Juegos", "Magia", "Mecha", "Militar", "Misterio", "Música", "Parodia", "Policía", "Psicológico", "Recuentos de la vida", "Romance", "Samurai", "Seinen", "Shoujo", "Shounen", "Sobrenatural", "Superpoderes", "Suspenso", "Terror", "Vampiros", "Yaoi", "Yuri"
-] as const;
+export const AnimeGenres = ["Acción", "Aventura", "Ciencia Ficción", "Comedia", "Deportes", "Drama", "Fantasía", "Misterio", "Recuentos de la Vida", "Romance", "Seinen", "Shoujo", "Shounen", "Sobrenatural", "Suspenso", "Terror", "Antropomórfico", "Artes Marciales", "Carreras", "Detectives", "Ecchi", "Elenco Adulto", "Escolares", "Espacial", "Gore", "Gourmet", "Harem", "Histórico", "Idols (Hombre)", "Idols (Mujer)", "Infantil", "Isekai", "Josei", "Juegos Estrategia", "Mahou Shoujo", "Mecha", "Militar", "Mitología", "Música", "Parodia", "Psicológico", "Samurai", "Shoujo Ai", "Shounen Ai", "Superpoderes", "Vampiros"] as const;
 
 export const AnimeStatuses = ["En emisión", "Finalizado", "Próximamente"] as const;
-export const AnimeTypes = ["OVA", "Anime", "Película", "Especial"] as const;
-export const FilterOrderTypes = ["Por Defecto", "Recientemente Actualizados", "Recientemente Agregados", "Nombre A-Z", "Calificación"] as const;
+export const AnimeTypes = ["OVA", "ONA", "TV Anime", "Película", "Especial"] as const;
+export const FilterOrderTypes = ["Predeterminado", "Puntuación", "Populares", "Título", "Últimos Agregados", "Últimos Estrenos"] as const;
 
 export const FilterOrderEnum = {
-  "Por Defecto": "default",
-  "Recientemente Actualizados": "updated",
-  "Recientemente Agregados": "added",
-  "Nombre A-Z": "title",
-  "Calificación": "rating"
+  "Predeterminado": "default",
+  "Puntuación": "score",
+  "Populares": "popular",
+  "Título": "title",
+  "Últimos Agregados": "latest_added",
+  "Últimos Estrenos": "latest_released"
 };
 
-export const AnimeTypeEnum = {
-  Anime: "tv",
-  Película: "movie",
-  Especial: "special",
-  OVA: "ova"
-};
+export const AnimeTypeEnum = getEnum(AnimeTypes);
 
 export const AnimeStatusEnum = {
-  "En emisión": 1,
-  "Finalizado": 2,
-  "Próximamente": 3
+  "En emisión": "emision",
+  "Finalizado": "finalizado",
+  "Próximamente": "proximamente"
 };
 
-export const AnimeGenreEnum = {
-  "Acción": "accion",
-  "Artes Marciales": "artes-marciales",
-  "Aventuras": "aventura",
-  "Carreras": "carreras",
-  "Ciencia Ficción": "ciencia-ficcion",
-  "Comedia": "comedia",
-  "Demencia": "demencia",
-  "Demonios": "demonios",
-  "Deportes": "deportes",
-  "Drama": "drama",
-  "Ecchi": "ecchi",
-  "Escolares": "escolares",
-  "Espacial": "espacial",
-  "Fantasía": "fantasia",
-  "Harem": "harem",
-  "Histórico": "historico",
-  "Infantil": "infantil",
-  "Josei": "josei",
-  "Juegos": "juegos",
-  "Magia": "magia",
-  "Mecha": "mecha",
-  "Militar": "militar",
-  "Misterio": "misterio",
-  "Música": "musica",
-  "Parodia": "parodia",
-  "Policía": "policia",
-  "Psicológico": "psicologico",
-  "Recuentos de la vida": "recuentos-de-la-vida",
-  "Romance": "romance",
-  "Samurai": "samurai",
-  "Seinen": "seinen",
-  "Shoujo": "shoujo",
-  "Shounen": "shounen",
-  "Sobrenatural": "sobrenatural",
-  "Superpoderes": "superpoderes",
-  "Suspenso": "suspenso",
-  "Terror": "terror",
-  "Vampiros": "vampiros",
-  "Yaoi": "yaoi",
-  "Yuri": "yuri"
-};
+export const AnimeGenreEnum = getEnum(AnimeGenres);

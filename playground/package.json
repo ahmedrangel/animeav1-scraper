@@ -8,6 +8,6 @@
   "main": "index.ts",
   "type": "module",
   "dependencies": {
-    "animeflv-scraper": "workspace:*"
+    "animeav1-scraper": "workspace:*"
   }
 }
