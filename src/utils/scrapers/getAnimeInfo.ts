@@ -31,6 +31,7 @@ export const getAnimeInfo = async (
         title: $(el).find("header > h3").text().trim(),
         relation: $(el).find("header > span").text().trim(),
         slug: $(el).find("a").attr("href")?.split("/").filter(Boolean).pop() || "",
+        cover: $(el).find("figure > img").attr("src") || "",
         url: animeav1URL + $(el).find("a").attr("href") || ""
       }))
       .get(): [];

@@ -72,6 +72,8 @@ export interface AnimeRelated {
   relation?: string;
   /** El slug de este animé */
   slug: string;
+  /** URL de la carátula del anime relacionado */
+  cover: string;
   /** URL completa al anime relacionado */
   url: string;
 }
