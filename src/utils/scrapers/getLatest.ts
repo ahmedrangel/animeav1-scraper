@@ -21,7 +21,7 @@ export const getLatest = async (): Promise<ChapterData[]> => {
           title: $(el).find("header > div").text(),
           number: Number($(el).find("div > div > div > span").text()),
           cover: $(el).find("div > figure > img").attr("src") as string,
-          slug: $(el).find("a").attr("href")!.replace("/media/", ""),
+          slug: $(el).find("a").attr("href")!.replace("/media/", "").replace("/", "-"),
           url: animeav1URL + $(el).find("a").attr("href") as string
         });
       });
