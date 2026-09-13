@@ -88,6 +88,10 @@ export interface AnimeRelated {
   slug: string;
   /** URL de la carátula del anime relacionado */
   cover: string;
+  /** Año de lanzamiento del anime relacionado */
+  year: number;
+  /** Fecha de inicio de emisión del anime relacionado (YYYY-MM-DD) */
+  start_date?: string;
   /** URL completa al anime relacionado */
   url: string;
 }

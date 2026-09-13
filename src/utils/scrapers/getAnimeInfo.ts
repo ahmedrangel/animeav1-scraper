@@ -33,7 +33,7 @@ export const getAnimeInfo = async (
           slug: relationSlug,
           cover: $(el).find("figure > img").attr("src") || "",
           year: parseInt($(el).parent().find("div > div").first().text().trim()),
-          startDate: media.relations?.find((r: Record<string, any>) => r?.destination?.slug === relationSlug)?.destination?.startDate,
+          start_date: media.relations?.find((r: Record<string, any>) => r?.destination?.slug === relationSlug)?.destination?.startDate,
           url: animeav1URL + $(el).find("a").attr("href") || ""
         };
       })
