@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.4.1
+
+[compare changes](https://github.com/ahmedrangel/animeav1-scraper/compare/v0.4.0...v0.4.1)
+
+### 🩹 Fixes
+
+- Snake case start date to related entries ([d7f618d](https://github.com/ahmedrangel/animeav1-scraper/commit/d7f618d))
+
+### ❤️ Contributors
+
+- Ahmed Rangel ([@ahmedrangel](https://github.com/ahmedrangel))
+
 ## v0.4.0
 
 [compare changes](https://github.com/ahmedrangel/animeav1-scraper/compare/v0.3.5...v0.4.0)
